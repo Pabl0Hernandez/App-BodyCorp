@@ -1,6 +1,96 @@
 ﻿@{
-	ViewData["Title"] = "Privacy Policy";
+	ViewData["Title"] = "Política de Privacidade - BodyCorp";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+	.privacy-container {
+		background: rgba(0, 0, 0, 0.85);
+		border: 2px solid #00ff80;
+		border-radius: 12px;
+		padding: 40px;
+		margin-top: 50px;
+		color: #e6ffe6;
+		backdrop-filter: blur(6px);
+		box-shadow: 0 0 18px #00ff80;
+		animation: @@keyframes glow 2s infinite alternate;
+		-webkit-animation: @@keyframes glow 2s infinite alternate; /* Safari */
+	}
+
+	/* ESCAPADO: @@keyframes para não quebrar Razor */
+	@@keyframes glow {
+		from {
+			box-shadow: 0 0 8px #00ff80;
+		}
+
+		to {
+			box-shadow: 0 0 25px #00ff80;
+		}
+	}
+
+	h1 {
+		text-align: center;
+		color: #00ff80;
+		font-weight: bold;
+		text-shadow: 0 0 12px #00ff80;
+	}
+
+	h3 {
+		color: #00ff80;
+		margin-top: 25px;
+		font-weight: 600;
+	}
+
+	p {
+		line-height: 1.6rem;
+	}
+
+	a {
+		color: #00ff80;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+		a:hover {
+			text-decoration: underline;
+		}
+</style>
+
+<div class="container">
+	<div class="privacy-container">
+		<h1>Política de Privacidade</h1>
+
+		<p>
+			Na <strong>BodyCorp</strong>, respeitamos e valorizamos a privacidade dos trabalhadores que transformam o mundo.
+			Todas as informações coletadas são tratadas com segurança e responsabilidade.
+		</p>
+
+		<h3>Coleta de Informações</h3>
+		<p>
+			Podemos coletar dados como nome, e-mail e informações necessárias para melhorar nossas
+			ferramentas inteligentes desenvolvidas com IA.
+		</p>
+
+		<h3>Uso das Informações</h3>
+		<p>
+			Utilizamos os dados exclusivamente para aprimorar a experiência dos usuários, fornecer
+			suporte e atualizar nossos serviços.
+		</p>
+
+		<h3>Segurança e Proteção</h3>
+		<p>
+			Nossa infraestrutura utiliza padrões industriais de segurança para manter seus dados
+			protegidos contra acessos não autorizados.
+		</p>
+
+		<h3>Direitos do Usuário</h3>
+		<p>
+			Você pode solicitar a alteração ou remoção dos seus dados a qualquer momento.
+			Para isso, entre em contato com nossa equipe:
+			<a href="mailto:contato@bodycorp.com">contato@bodycorp.com</a>
+		</p>
+
+		<p class="mt-4 text-center">
+			🌐 Sua privacidade é parte da nossa engenharia de confiança.
+		</p>
+	</div>
+</div>
