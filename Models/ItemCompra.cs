@@ -6,7 +6,7 @@
 
         //relacioinamento da compra
         public int CompraId { get; set; }
-        public Compra Compra { get; set; }
+        public Compra? Compra { get; set; }
 
         //do produto
         public int ProdutoId { get; set; }

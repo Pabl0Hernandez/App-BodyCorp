@@ -13,7 +13,7 @@ namespace App_BodyCorp.Models
         public Cliente? Cliente { get; set; }
 
         //relacionamento com o itens compra, uma compra só pode ter varios itens
-
+        public ICollection<ItemCompra>? Itens { get; set; }
         public decimal ValorTotal { get; set; }
     }
 }
