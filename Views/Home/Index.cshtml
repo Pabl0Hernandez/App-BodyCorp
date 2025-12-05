@@ -125,13 +125,30 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
-				<div class="collapse navbar-collapse" id="mainNav">
-					<ul class="navbar-nav ms-3">
-						<!-- Alinhado à esquerda -->
-						<li class="nav-item mx-2"><a class="nav-link" href="#home">Home</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="#sobre">Sobre a Empresa</a></li>
-						<li class="nav-item mx-2"><a class="nav-link" href="#contato">Contato</a></li>
+				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+					<ul class="navbar-nav flex-grow-1">
+						<li class="nav-item">
+							<a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a>
+						</li>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" asp-area="" asp-controller="Compras" asp-action="Index">Compras</a>
+						</li>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-white" asp-area="" asp-controller="ItemCompras" asp-action="Index">Itens Compras</a>
+						</li>
 					</ul>
+					<partial name="_LoginPartial" />
 				</div>
 
 			</div>
