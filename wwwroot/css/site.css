@@ -18,6 +18,26 @@ body {
 }
 
 
+
+
+
+.banner {
+    height: 450px;
+    width: 100%;
+    background-image: url('../images/freepik-projeto-sem-titulo-20251205193212sxXh.png'); /* use o nome da sua img */
+    background-size: cover; /* mantém proporção e cobre tudo */
+    background-position: center; /* centraliza */
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
 .hero-section {
     height: 95vh;
     position: relative;
