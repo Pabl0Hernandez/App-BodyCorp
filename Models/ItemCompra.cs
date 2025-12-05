@@ -17,6 +17,6 @@
         public decimal PrecoUnitario { get; set; }
         //pra fazer a conta
 
-        public decimal TotalItem => PrecoUnitario * Quantidade;
+        public decimal TotalItem { get; set; }
     }
 }

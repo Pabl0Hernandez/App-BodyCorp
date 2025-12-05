@@ -1,107 +1,23 @@
 ﻿@{
-	ViewData["Title"] = "BodyCorp | Segurança Inteligente";
+	ViewData["Title"] = "Home";
 }
+	<style>
 
-<style>
-	body {
-		background: #000;
-		color: #ffffff;
-		font-family: "Poppins", sans-serif;
-	}
 
-	/* HERO */
-	.hero-section {
-		height: 95vh;
-		background: url('https://images.unsplash.com/photo-1592930934305-6040cf8524bd?w=1600') center/cover no-repeat;
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-	}
 
-		.hero-section::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background: rgba(0,0,0,0.7);
+<!--BANNER-->
+			transition: .3s;
+			box-shadow: 0 0 15px #0aff0a;
 		}
 
-	.hero-content {
-		position: relative;
-		z-index: 10;
-		max-width: 900px;
-		padding: 20px;
-	}
+			.hero-btn:hover {
+				background-color: #00cc00;
+				box-shadow: 0 0 25px #0aff0a;
+				transform: translateY(-3px);
+			}
 
-	.hero-title {
-		font-size: 3.4rem;
-		font-weight: 800;
-		color: #0aff0a;
-		text-shadow: 0 0 15px #0aff0a;
-		margin-bottom: 15px;
-	}
-
-	.hero-text {
-		font-size: 1.25rem;
-		color: #d7ffd7;
-		margin-bottom: 25px;
-	}
-
-	.hero-btn {
-		background: #0aff0a;
-		color: #000;
-		font-weight: bold;
-		padding: 12px 32px;
-		border-radius: 10px;
-		border: none;
-		box-shadow: 0 0 15px #0aff0a;
-		transition: .3s;
-		text-decoration: none;
-	}
-
-		.hero-btn:hover {
-			background: #00cc00;
-			box-shadow: 0 0 25px #0aff0a;
-			transform: translateY(-3px);
-		}
-
-	/* SEÇÃO DESTAQUE */
-	.info-section {
-		padding: 80px 20px;
-		text-align: center;
-		background: #061306;
-		border-top: 2px solid #0aff0a20;
-		border-bottom: 2px solid #0aff0a20;
-	}
-
-	.info-title {
-		font-size: 2.4rem;
-		font-weight: 800;
-		color: #0aff0a;
-	}
-
-	.info-text {
-		max-width: 850px;
-		margin: 20px auto;
-		color: #caffca;
-		font-size: 1.2rem;
-	}
-</style>
-
-
-<!-- HERO -->
-<section class="hero-section" id="home">
-	<div class="hero-content">
-		<h1 class="hero-title">BodyCorp</h1>
-		<p class="hero-text">
-			Criando soluções inteligentes com IA para proteger quem move o mundo com as próprias mãos.
-			Tecnologias de prevenção, sensores e equipamentos que cuidam da sua segurança.
-		</p>
-		<a href="#sobre" class="hero-btn">Conheça Nossa Tecnologia</a>
-	</div>
-</section>
-
+		/* SEÇÕES */
+		.info-section {
 
 <!-- SOBRE A BODYCORP -->
 <section class="info-section" id="sobre">
@@ -111,3 +27,40 @@
 		prevenindo lesões no ambiente de trabalho. Segurança e conforto com o melhor da inovação.
 	</p>
 </section>
+
+
+<!-- CONTATO -->
+<section id="contato" class="py-5">
+	<div class="container">
+		<h2 class="mb-4">Precisa de Ajuda?Nós Contate!</h2>
+		<p>Email: suporte@bodycorp.com</p>
+		<p>Telefone: (11) 99999-9999</p>
+	</div>
+</section>
+
+		<a href="#sobre" class="hero-btn">Conheça Nossa Tecnologia</a>
+	</div>
+</section>
+			color: #0aff0a;
+
+<!-- SOBRE A BODYCORP -->
+<section class="info-section" id="sobre">
+	<h2 class="info-title">Tecnologia a serviço da segurança</h2>
+	<p class="info-text">
+		Desenvolvemos ferramentas inteligentes que monitoram movimentos e reduzem riscos,
+		prevenindo lesões no ambiente de trabalho. Segurança e conforto com o melhor da inovação.
+	</p>
+</section>
+
+
+<!-- CONTATO -->
+<section id="contato" class="py-5">
+	<div class="container">
+		<h2 class="mb-4">Precisa de Ajuda?Nós Contate!</h2>
+		<p>Email: suporte@bodycorp.com</p>
+		<p>Telefone: (11) 99999-9999</p>
+	</div>
+</section>
+
+
+				
