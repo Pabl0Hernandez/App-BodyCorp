@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace App_BodyCorp.Data.Migrations
+namespace App_BodyCorp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251204171702_Inicio")]
-    partial class Inicio
+    [Migration("20251204172445_inicio")]
+    partial class inicio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace App_BodyCorp.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Endereço")
+                    b.Property<string>("Endereco")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefone")
@@ -67,7 +67,7 @@ namespace App_BodyCorp.Data.Migrations
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataCompra")
+                    b.Property<DateTime?>("DataCompra")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("ValorTotal")
@@ -99,6 +99,9 @@ namespace App_BodyCorp.Data.Migrations
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("TotalItem")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ItemCompraId");
 
@@ -341,7 +344,7 @@ namespace App_BodyCorp.Data.Migrations
             modelBuilder.Entity("App_BodyCorp.Models.Compra", b =>
                 {
                     b.HasOne("App_BodyCorp.Models.Cliente", "Cliente")
-                        .WithMany("Compras")
+                        .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -352,13 +355,13 @@ namespace App_BodyCorp.Data.Migrations
             modelBuilder.Entity("App_BodyCorp.Models.ItemCompra", b =>
                 {
                     b.HasOne("App_BodyCorp.Models.Compra", "Compra")
-                        .WithMany("Itens")
+                        .WithMany()
                         .HasForeignKey("CompraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("App_BodyCorp.Models.Produto", "Produto")
-                        .WithMany("ItemCompras")
+                        .WithMany()
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -417,21 +420,6 @@ namespace App_BodyCorp.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("App_BodyCorp.Models.Cliente", b =>
-                {
-                    b.Navigation("Compras");
-                });
-
-            modelBuilder.Entity("App_BodyCorp.Models.Compra", b =>
-                {
-                    b.Navigation("Itens");
-                });
-
-            modelBuilder.Entity("App_BodyCorp.Models.Produto", b =>
-                {
-                    b.Navigation("ItemCompras");
                 });
 #pragma warning restore 612, 618
         }
