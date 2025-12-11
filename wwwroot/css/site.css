@@ -1,31 +1,238 @@
-html {
-    font-size: 14px;
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Franklin Gothic'
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
+/* Degradê fixo pro sistema */
 body {
-    margin-bottom: 60px;
+    background: linear-gradient(135deg, #e8fff2, #8be0b8);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-    color: var(--bs-secondary-color);
-    text-align: end;
+/* Navbar */
+.navbar {
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid #0aff0a40;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-    text-align: start;
+/* Logo */
+.nav-logo {
+    height: 25px;
+    width: auto;
+    border-radius: 8px;
 }
+
+
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0aff0a;
+    text-shadow: 0 0 8px #0aff0a;
+}
+
+/* Links */
+.nav-link-custom {
+    color: #ffffff !important;
+    font-weight: 500;
+    margin: 0 12px;
+    position: relative;
+    transition: .3s;
+}
+
+    /* Efeito underline animado */
+    .nav-link-custom::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        width: 0%;
+        height: 3px;
+        background: #0aff0a;
+        transition: .3s;
+        border-radius: 5px;
+    }
+
+    .nav-link-custom:hover::after {
+        left: 0;
+        width: 100%;
+    }
+
+    .nav-link-custom:hover {
+        color: #0aff0a !important;
+    }
+
+/* Botão hamburguer custom */
+.navbar-toggler {
+    border-color: #0aff0a;
+}
+
+
+
+
+.hero-section {
+    padding: 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    padding: 80px;
+}
+
+.hero-title {
+    font-size: 3.4rem;
+    font-weight: 800;
+    color: rgb(3, 119, 55)308;
+    text-shadow: 0 0 15px #0aff0a;
+    margin-bottom: 15px;
+}
+
+.hero-text {
+    max-width: 900px;
+    font-size: 1.35rem;
+    color: #0f3d29;
+    margin-bottom: 25px;
+}
+
+.hero-btn {
+    background: #0aff0a;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 32px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 15px #0aff0a;
+    transition: .3s;
+    text-decoration: none;
+}
+
+    .hero-btn:hover {
+        background: #00cc00;
+        box-shadow: 0 0 25px #0aff0a;
+        transform: translateY(-3px);
+    }
+
+
+
+
+
+/* SEÇÃO DESTAQUE */
+.info-section {
+    padding: 80px 20px;
+    text-align: center;
+    border-top: 2px solid #0aff0a20;
+    border-bottom: 2px solid #0aff0a20;
+}
+
+.info-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #000;
+    text-shadow: 0 0 15px #0aff0a;
+}
+
+.info-text {
+    max-width: 900px;
+    margin: 20px auto;
+    color: #0f3d29;
+    font-size: 1.45rem;
+}
+
+
+
+.produto-card {
+    background: #0c1a0f;
+    border-radius: 10px;
+    padding: 10px;
+    color: #ffefef;
+    transition: 0.3s ease;
+}
+
+    .produto-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .produto-card .btn-outline-light {
+        color: #fff;
+        border-color: #fff;
+    }
+
+        .produto-card .btn-outline-light:hover {
+            background: #fff;
+            color: #0aff0a20;
+        }
+
+.card-img-top {
+    transition: transform 0.4s ease, filter 0.4s ease;
+    border-radius: 10px;
+}
+
+.card:hover .card-img-top {
+    transform: translate(-6px) scale(1.03); /*pra flutuar a imagem*/
+    filter: brightness(1.15); /* pra brilhar*/
+}
+
+
+
+.contato-section {
+    background: rgba(0,0,0,0.10);
+    backdrop-filter: blur(6px);
+    border-top: 2px solid #0aff0a40;
+    padding-bottom: 60px;
+}
+
+.form-title {
+    font-size: 2rem; /*2 vezes*/
+    font-weight: bold;
+    color: #000000;
+    text-shadow: 0 0 10px #0aff0a;
+}
+
+.contato-form {
+    max-width: 600px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #000000;
+}
+
+    .contato-form .form-control { /*pra deixar transparente junto com o fundo em degrade*/
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid #0aff0a;
+        color: #000;
+    }
+
+.btn-enviar {
+    width: 100%;
+    background: #0aff0a;
+    color: #000;
+    padding: 11px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 0 15px #0aff0a;
+    transition: .3s; /*hover*/
+}
+
+    .btn-enviar:hover {
+        background: #00cc00;
+        box-shadow: 0 0 25px #0aff0a; /*box-shadow: <deslocamento-x> <deslocamento-y> <raio-desfoque> <raio-espalhamento> <cor> [inset];*/
+        transform: translateY(-3px)
+    }
