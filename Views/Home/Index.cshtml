@@ -5,57 +5,182 @@
 
 
 
-<!--BANNER-->
-<div class="banner">
-	<div class="banner-content">
-	</div>
-</div>
 
 
-
-<section class="hero-section" id="home">
+<section class="hero-section d-flex align-items-center" id="home">
 	<div class="hero-content">
 		<h1 class="hero-title">BodyCorp</h1>
 		<p class="hero-text">
 			Criando soluções inteligentes com IA para proteger quem move o mundo com as próprias mãos.
 			Tecnologias de prevenção, sensores e equipamentos que cuidam da sua segurança.
 		</p>
-		<a href="#sobre" class="hero-btn">Conheça Nossa Tecnologia</a>
+		<a href="#sobre" class="hero-btn btn btn-lg mt-3">Conheça Nossa Tecnologia</a>
 	</div>
 </section>
 
 
 
-<!-- SOBRE A BODYCORP -->
+<!-- Sobre -->
 <section class="info-section" id="sobre">
 	<h2 class="info-title">Tecnologia a serviço da segurança</h2>
-	<p class="info-text">
+	<p class="info-text mb-5">
 		Desenvolvemos ferramentas inteligentes que monitoram movimentos e reduzem riscos,
 		prevenindo lesões no ambiente de trabalho. Segurança e conforto com o melhor da inovação.
 	</p>
-</section>
-<section>
-	<div class="row g-4">
+
+	<!--cards e fade-->
+	<div class="row g-4 justify-content-center">
 		<!-- ombreira -->
-		<div class="col-md-4">
+		<div class="col-12 col-md-6 col-lg-4 ">
 			<div class="card h-100 shadow-sm border-0 text-center p-3 produto-card">
 				<img src="img/Colete inteligente.jpeg" class="card-img-top mx-auto" style="width:150px;" alt="Ombreira">
 				<div class="card-body">
 					<h5 class="card-title fw-bold">Ombreira Inteligente</h5>
 					<p class="card-text">Previne dores e melhora a postura nos movimentos repetitivos.</p>
-					<button class="btn btn-outline-dark mt-2 " data-bs-toggle="modal" data-bs-target="#modalOmbreira">Saiba Mais</button>
+					<button class="btn btn-outline-light mt-2 " data-bs-toggle="modal" data-bs-target="#modalOmbreira">Saiba Mais</button>
 				</div>
 			</div>
 		</div>
 
+		<!-- Colete -->
+		<div class="col-12 col-md-6 col-lg-4">
+			<div class="card h-100 shadow-sm border-0 text-center p-3 produto-card">
+				<img src="img/Luva inteligente.jpg" class="card-img-top mx-auto" style="width:150px;" alt="Colete">
+				<div class="card-body">
+					<h5 class="card-title fw-bold">Colete Ergonômico</h5>
+					<p class="card-text">Suporte lombar inteligente com monitoramento de movimentos.</p>
+					<button class="btn btn-outline-light mt-2 " data-bs-toggle="modal" data-bs-target="#modalColete">Saiba Mais</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Luva -->
+		<div class="col-12 col-md-6 col-lg-4">
+			<div class="card h-100 shadow-sm border-0 text-center p-3 produto-card">
+				<img src="img/Colete inteligente.jpeg" class="card-img-top mx-auto" style="width:150px;" alt="Luva">
+				<div class="card-body">
+					<h5 class="card-title fw-bold">Luva Inteligente</h5>
+					<p class="card-text">Registra movimentos e envia alertas para prevenir lesões.</p>
+					<button class="btn btn-outline-light mt-2 " data-bs-toggle="modal" data-bs-target="#modalLuva">Saiba Mais</button>
+				</div>
+			</div>
+		</div>
 </section>
 
-<!-- CONTATO -->
-<section id="contato" class="py-5">
+<div class="modal fade" id="modalOmbreira" tabindex="-1" aria-labelledby="modalOmbreira" aria-hidden="true" style="color: #000000; border-radius: 20px;  backdrop-filter: blur(10px)">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header border-0">
+				<h5 class="modal-title text-center" id="modalOmbreiraLabe">OmniShoulder PRO</h5>
+				<button class="btn-close " data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<p class="mt-3">
+					A OmniShoulder PRO é uma ombreira inteligente desenvolvida para trabalhadores que realizam movimentos repetitivos do ombro e pescoço.
+				</p>
+				<ul class="mt-3">
+					<li>Sensores de movimento ultra precisos</li>
+					<li>Monitoramento em tempo real via app BodyCorp</li>
+					<li>Alertas de postura incorreta</li>
+					<li>Análises semanais para prevenção de lesões</li>
+					<li>Material respirável e anatômico</li>
+				</ul>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="modalColete" tabindex="-1" aria-labelledby="modalColete" aria-hidden="true" style="color: #000000; border-radius: 20px;  backdrop-filter: blur(10px)">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header border-0">
+				<h5 class="modal-title text-center" id="ModalLuvaLabel">CoreVest ACTIVE</h5>
+				<button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<p class="mt-3">
+					O CoreVest ACTIVE é um colete inteligente projetado para prevenir dores lombares, desalinhamentos posturais e tensões acumuladas durante longos períodos de trabalho. Utiliza sensores de pressão e postura para monitorar o alinhamento da coluna e ajudar o usuário a manter uma posição segura sem restringir movimentos.
+				</p>
+				<ul class="mt-3">
+					<li>Sensores de movimento ultra precisos</li>
+					<li>Análise de carga sobre a lombar durante o dia</li>
+					<li>Alertas de postura incorreta</li>
+					<li>Análises semanais para prevenção de lesões</li>
+					<li>Material respirável e anatômico para uso prolongado</li>
+					<li>Notificações vibratórias quando a coluna se desalinha</li>
+
+				</ul>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="modalLuva" tabindex="-1" aria-labelledby="modalLuva" aria-hidden="true" style="color: #000000; border-radius: 20px;  backdrop-filter: blur(10px)">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+
+			<div class="modal-header border-0">
+				<h5 class="modal-title text-center" id="ModalLuvaLabel">BioGrip Sense</h5>
+				<button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<p class="mt-3">
+					A BioGrip Sense foi criada para profissionais que utilizam intensamente as mãos, oferecendo proteção inteligente e análises em tempo real dos movimentos dos dedos, pulsos e antebraços. Ideal para prevenir tendinites e fadiga muscular.
+				</p>
+				<ul class="mt-3">
+					<li>Sensores que analisam a pressão, força e repetição de movimentos</i>
+					<li>Monitoramento da posição do pulso para evitar torções</li>
+					<li>Alertas de postura incorreta</li>
+					<li>Análises semanais para prevenção de lesões</li>
+					<li>Design anatômico com liberdade total de movimento</li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="banner my-5">
 	<div class="container">
-		<h2 class="mb-4">Precisa de Ajuda?Nós Contate!</h2>
-		<p>Email: suporte@bodycorp.com</p>
-		<p>Telefone: (11) 99999-9999</p>
+		<img src="~/images/dual.png" class="card-img-top mx-auto" alt="Luva">
+
 	</div>
 </section>
+
+
+
+<section id="formulario" class="contato-section py-5">
+	<div class="container ">
+		<h2 class="form-title mb-4 text-center mb-4">Sugestões, Dúvidas? Entre em Contato!</h2>
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-8 col-lg-6">
+				<form class="contato-form mx-auto">
+					<div class="mb-3">
+						<label class="form-label">Nome</label>
+						<input type="text" class="form-control" placeholder="Seu nome completo" required />
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Email</label>
+						<input type="email" class="form-control" placeholder="seuemail@exemplo.com" required />
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Mensagem</label>
+						<textarea class="form-control" rows="4" placeholder="Como podemos ajudar?" required></textarea>
+					</div>
+
+					<button type="submit" class="btn-enviar">Enviar Mensagem</button>
+				</form>
+			</div>
+		</div>
+	</div>
 
