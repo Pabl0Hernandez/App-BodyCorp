@@ -1,58 +1,88 @@
 ﻿@model App_BodyCorp.Models.Cliente
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Novo Cliente";
 }
 
-<h1>Create</h1>
+<div class="container mt-5">
 
-<h4>Cliente</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ClienteNome" class="control-label"></label>
-                <input asp-for="ClienteNome" class="form-control" />
-                <span asp-validation-for="ClienteNome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CNPJ" class="control-label"></label>
-                <input asp-for="CNPJ" class="form-control" />
-                <span asp-validation-for="CNPJ" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
-                <span asp-validation-for="Telefone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Endereco" class="control-label"></label>
-                <input asp-for="Endereco" class="form-control" />
-                <span asp-validation-for="Endereco" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataCadastro" class="control-label"></label>
-                <input asp-for="DataCadastro" class="form-control" />
-                <span asp-validation-for="DataCadastro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+	<h1 class="fw-bold mb-4"
+		style="color:#000; text-shadow:0 0 8px #00ff0a, 0 0 15px #00ff0a;">
+		Cadastrar Novo Cliente
+	</h1>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+	<div class="card shadow-lg border-0 rounded-4">
+		<div class="card-body p-4">
+
+			<form asp-action="Create">
+
+				<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+				<div class="row g-3">
+
+					<div class="col-md-6">
+						<label asp-for="ClienteNome" class="form-label fw-bold">Nome do Cliente</label>
+						<input asp-for="ClienteNome" class="form-control border-success" />
+						<span asp-validation-for="ClienteNome" class="text-danger"></span>
+					</div>
+
+					<div class="col-md-6">
+						<label asp-for="CNPJ" class="form-label fw-bold">CNPJ</label>
+						<input asp-for="CNPJ" class="form-control border-success" />
+						<span asp-validation-for="CNPJ" class="text-danger"></span>
+					</div>
+
+					<div class="col-md-6">
+						<label asp-for="Telefone" class="form-label fw-bold">Telefone</label>
+						<input asp-for="Telefone" class="form-control border-success" />
+						<span asp-validation-for="Telefone" class="text-danger"></span>
+					</div>
+
+					<div class="col-md-6">
+						<label asp-for="Email" class="form-label fw-bold">Email</label>
+						<input asp-for="Email" class="form-control border-success" />
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+
+					<div class="col-md-12">
+						<label asp-for="Endereco" class="form-label fw-bold">Endereço</label>
+						<input asp-for="Endereco" class="form-control border-success" />
+						<span asp-validation-for="Endereco" class="text-danger"></span>
+					</div>
+
+					<div class="col-md-6">
+						<label asp-for="DataCadastro" class="form-label fw-bold">Data de Cadastro</label>
+						<input asp-for="DataCadastro" class="form-control border-success" />
+						<span asp-validation-for="DataCadastro" class="text-danger"></span>
+					</div>
+
+				</div>
+
+				<hr class="my-4" />
+
+				<div class="d-flex justify-content-between">
+					<a asp-action="Index" class="btn btn-secondary px-4">
+						<i class="bi bi-arrow-left"></i> Voltar
+					</a>
+
+					<button type="submit" class="btn px-5"
+							style="background:#00ff0a; color:#000; font-weight:bold;
+                                   box-shadow:0 0 15px #00ff0a;">
+						<i class="bi bi-check2-circle"></i> Salvar
+					</button>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

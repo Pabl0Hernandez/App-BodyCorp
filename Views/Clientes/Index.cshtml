@@ -1,65 +1,71 @@
 ﻿@model IEnumerable<App_BodyCorp.Models.Cliente>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Clientes";
 }
 
-<h1>Index</h1>
+<div class="container mt-5">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ClienteNome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CNPJ)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataCadastro)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClienteNome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CNPJ)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Endereco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCadastro)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+	<!-- TÍTULO + BOTÃO -->
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1 class="fw-bold" style="color:#000; text-shadow:0 0 8px #00ff0a, 0 0 15px #00ff0a, 0 0 25px #00ff0a;">
+			Clientes Cadastrados
+		</h1>
+
+
+		<a asp-action="Create" class="btn btn-success shadow px-4">
+			<i class="bi bi-plus-lg"></i> Novo Cliente
+		</a>
+	</div>
+
+	<!-- CARD ENVOLVENDO A TABELA -->
+	<div class="card shadow-lg border-0 rounded-4">
+		<div class="card-body">
+
+			<table class="table table-hover align-middle">
+				<thead class="table-dark">
+					<tr>
+						<th>@Html.DisplayNameFor(model => model.ClienteNome)</th>
+						<th>@Html.DisplayNameFor(model => model.CNPJ)</th>
+						<th>@Html.DisplayNameFor(model => model.Telefone)</th>
+						<th>@Html.DisplayNameFor(model => model.Email)</th>
+						<th>@Html.DisplayNameFor(model => model.Endereco)</th>
+						<th>@Html.DisplayNameFor(model => model.DataCadastro)</th>
+						<th class="text-center">Ações</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.ClienteNome</td>
+							<td>@item.CNPJ</td>
+							<td>@item.Telefone</td>
+							<td>@item.Email</td>
+							<td>@item.Endereco</td>
+							<td>@item.DataCadastro.ToShortDateString()</td>
+
+							<td class="text-center">
+								<a asp-action="Edit" asp-route-id="@item.ClienteId" class="btn btn-warning btn-sm me-1">
+									<i class="bi bi-pencil-square"></i> Editar
+								</a>
+								<a asp-action="Details" asp-route-id="@item.ClienteId" class="btn btn-info btn-sm me-1 text-white">
+									<i class="bi bi-eye"></i> Detalhes
+								</a>
+								<a asp-action="Delete" asp-route-id="@item.ClienteId" class="btn btn-danger btn-sm">
+									<i class="bi bi-trash"></i> Excluir
+								</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+</div>
+
+<!-- Bootstrap Icons caso não tenha -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

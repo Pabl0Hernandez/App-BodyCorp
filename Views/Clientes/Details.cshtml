@@ -1,54 +1,97 @@
 ﻿@model App_BodyCorp.Models.Cliente
 
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Detalhes do Cliente";
 }
 
-<h1>Details</h1>
+<style>
+	.details-card {
+		background: #fff;
+		padding: 30px;
+		border-radius: 12px;
+		box-shadow: 0 4px 15px #00000020;
+		max-width: 650px;
+		margin: 30px auto;
+		border-left: 4px solid #0aff0a;
+	}
 
-<div>
-    <h4>Cliente</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClienteNome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClienteNome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CNPJ)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CNPJ)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Endereco)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Endereco)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataCadastro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataCadastro)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ClienteId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+	.details-title {
+		font-size: 28px;
+		font-weight: bold;
+		color: #0acc0a;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.details-label {
+		font-weight: bold;
+		color: #333;
+		margin-top: 10px;
+	}
+
+	.details-value {
+		color: #555;
+		padding-bottom: 8px;
+		border-bottom: 1px solid #eaeaea;
+		margin-bottom: 12px;
+	}
+
+	.btn-custom {
+		background: #0acc0a;
+		color: black;
+		font-weight: bold;
+		padding: 10px 22px;
+		border-radius: 8px;
+		border: none;
+		transition: .2s;
+	}
+
+		.btn-custom:hover {
+			background: #0aff0a;
+			color: black;
+			transform: scale(1.03);
+		}
+
+	.btn-back {
+		margin-left: 10px;
+		text-decoration: none;
+		font-weight: bold;
+		color: #0acc0a;
+	}
+
+		.btn-back:hover {
+			text-decoration: underline;
+			color: #0aff0a;
+		}
+</style>
+
+<div class="details-card">
+
+	<h2 class="details-title">Detalhes do Cliente</h2>
+
+	<div>
+		<div class="details-label">Nome</div>
+		<div class="details-value">@Html.DisplayFor(model => model.ClienteNome)</div>
+
+		<div class="details-label">CNPJ</div>
+		<div class="details-value">@Html.DisplayFor(model => model.CNPJ)</div>
+
+		<div class="details-label">Telefone</div>
+		<div class="details-value">@Html.DisplayFor(model => model.Telefone)</div>
+
+		<div class="details-label">Email</div>
+		<div class="details-value">@Html.DisplayFor(model => model.Email)</div>
+
+		<div class="details-label">Endereço</div>
+		<div class="details-value">@Html.DisplayFor(model => model.Endereco)</div>
+
+		<div class="details-label">Data de Cadastro</div>
+		<div class="details-value">@Html.DisplayFor(model => model.DataCadastro)</div>
+	</div>
+
+	<div class="mt-3 text-center">
+		<a asp-action="Edit" asp-route-id="@Model?.ClienteId" class="btn btn-custom">Editar</a>
+		<a asp-action="Index" class="btn-back">Voltar à Lista</a>
+	</div>
+
 </div>
