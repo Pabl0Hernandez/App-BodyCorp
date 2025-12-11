@@ -1,96 +1,199 @@
 ﻿@{
-	ViewData["Title"] = "Política de Privacidade - BodyCorp";
+	ViewData["Title"] = "Equipe";
+}
+
+<@{
+	ViewData["Title"] = "Equipe";
 }
 
 <style>
-	.privacy-container {
-		background: rgba(0, 0, 0, 0.85);
-		border: 2px solid #00ff80;
-		border-radius: 12px;
-		padding: 40px;
-		margin-top: 50px;
-		color: #e6ffe6;
-		backdrop-filter: blur(6px);
-		box-shadow: 0 0 18px #00ff80;
-		animation: @@keyframes glow 2s infinite alternate;
-		-webkit-animation: @@keyframes glow 2s infinite alternate; /* Safari */
+
+/* FUNDO COM DEGRADÊ (mantido) */
+body {
+	background: linear-gradient(135deg, #ffffff, #33b871);
+}
+
+.team-card {
+	background: #f2f2f2;
+	border-radius: 15px;
+	padding: 25px;
+	margin-bottom: 60px;
+	display: flex;
+	align-items: center;
+	gap: 25px;
+	/* SOMBRA PRETA MAIS FORTE */
+	box-shadow: 0 0 35px rgba(0, 0, 0, 0.55);
+}
+
+	.team-card.reverse {
+		flex-direction: row-reverse;
 	}
 
-	/* ESCAPADO: @@keyframes para não quebrar Razor */
-	@@keyframes glow {
-		from {
-			box-shadow: 0 0 8px #00ff80;
-		}
+/* FOTO COM SOMBRA PRETA BEM FORTE */
+.team-photo {
+	width: 230px;
+	height: 230px;
+	border-radius: 12px;
+	object-fit: cover;
+	filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 28px rgba(0, 0, 0, 0.5));
+	transition: .3s;
+}
 
-		to {
-			box-shadow: 0 0 25px #00ff80;
-		}
+	.team-photo:hover {
+		transform: scale(1.05);
+		filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 45px rgba(0, 0, 0, 0.65));
 	}
 
-	h1 {
-		text-align: center;
-		color: #00ff80;
-		font-weight: bold;
-		text-shadow: 0 0 12px #00ff80;
+.member-name {
+	background: #000;
+	color: white;
+	padding: 8px 15px;
+	border-radius: 8px;
+	margin-top: 8px;
+	font-size: 17px;
+	font-weight: 600;
+	display: inline-block;
+}
+
+.social-icons i {
+	font-size: 22px;
+	margin-right: 12px;
+	cursor: pointer;
+	transition: .2s;
+}
+
+	.social-icons i:hover {
+		opacity: .7;
 	}
 
-	h3 {
-		color: #00ff80;
-		margin-top: 25px;
-		font-weight: 600;
+/* LOGO – SOMBRA PRETA FORTE */
+.main-logo img {
+	width: 550px;
+	max-width: 90%;
+	margin-bottom: 25px;
+	transition: .3s;
+	filter: drop-shadow(0 0 22px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(0, 0, 0, 0.55));
+}
+
+	.main-logo img:hover {
+		transform: scale(1.08);
+		filter: drop-shadow(0 0 35px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 55px rgba(0, 0, 0, 0.7));
 	}
 
-	p {
-		line-height: 1.6rem;
-	}
-
-	a {
-		color: #00ff80;
-		text-decoration: none;
-		font-weight: 600;
-	}
-
-		a:hover {
-			text-decoration: underline;
-		}
 </style>
 
-<div class="container">
-	<div class="privacy-container">
-		<h1>Política de Privacidade</h1>
 
-		<p>
-			Na <strong>BodyCorp</strong>, respeitamos e valorizamos a privacidade dos trabalhadores que transformam o mundo.
-			Todas as informações coletadas são tratadas com segurança e responsabilidade.
-		</p>
+<div class="container py-5">
 
-		<h3>Coleta de Informações</h3>
-		<p>
-			Podemos coletar dados como nome, e-mail e informações necessárias para melhorar nossas
-			ferramentas inteligentes desenvolvidas com IA.
-		</p>
+	<!-- LOGO DESTACADA -->
+	<div class="text-center main-logo">
+		<img src="~/img/logo.png" alt="Logo Style Store" />
+	</div>
 
-		<h3>Uso das Informações</h3>
-		<p>
-			Utilizamos os dados exclusivamente para aprimorar a experiência dos usuários, fornecer
-			suporte e atualizar nossos serviços.
-		</p>
+	<h3 class="fw-bold mt-4">Quem somos nós?</h3>
 
-		<h3>Segurança e Proteção</h3>
-		<p>
-			Nossa infraestrutura utiliza padrões industriais de segurança para manter seus dados
-			protegidos contra acessos não autorizados.
-		</p>
+	<p class="text-muted mb-4">
+		Somos uma equipe formada por profissionais apaixonados pelo que fazem.
+		Trabalhamos com dedicação, respeito e carinho por cada detalhe para garantir
+		a melhor experiência possível.
+	</p>
 
-		<h3>Direitos do Usuário</h3>
-		<p>
-			Você pode solicitar a alteração ou remoção dos seus dados a qualquer momento.
-			Para isso, entre em contato com nossa equipe:
-			<a href="mailto:contato@bodycorp.com">contato@bodycorp.com</a>
-		</p>
+	<h3 class="fw-bold mt-2 mb-4">Equipe</h3>
 
-		<p class="mt-4 text-center">
-			🌐 Sua privacidade é parte da nossa engenharia de confiança.
+
+	<!-- JOÃO -->
+	<div class="team-card">
+		<div>
+			<img src="~/img/kakakaka.png" class="team-photo" />
+			<span class="member-name">João Gabriel</span>
+
+			<div class="social-icons mt-2">
+				<i class="bi bi-linkedin"></i>
+				<i class="bi bi-instagram"></i>
+				<i class="bi bi-github"></i>
+				<i class="bi bi-envelope"></i>
+			</div>
+		</div>
+
+		<p class="text-muted fs-5">
+   Ola, sou o João Gabriel, trabalho com desenvolvimento de sistemas na Bodycorp. Tenho 18 anos e estou cursando o técnico de Desenvolvimento de Sistemas no SENAI. Estou sempre buscando aprender mais sobre a área e espero poder crescer cada vez mais aqui na empresa!
 		</p>
 	</div>
+
+	<!-- PABLO -->
+	<div class="team-card reverse">
+		<div>
+			<img src="~/img/kkkkk.png" class="team-photo" />
+			<span class="member-name">Pablo Hernandez</span>
+
+			<div class="social-icons mt-2">
+				<i class="bi bi-linkedin"></i>
+				<i class="bi bi-instagram"></i>
+				<i class="bi bi-github"></i>
+				<i class="bi bi-envelope"></i>
+			</div>
+		</div>
+
+		<p class="text-muted fs-5">
+  Tenho 17 anos e sou apaixonado por programação. No momento, estou focado em aprender mais sobre desenvolvimento de sites e, futuramente, pretendo trabalhar com desenvolvimento de jogos e sites. Atualmente estudo no SENAI Jaú e busco sempre evoluir na área.
+		</p>
+	</div>
+
+	<!-- GABI -->
+	<div class="team-card">
+		<div>
+			<img src="~/img/karen.jpg" class="team-photo" />
+			<span class="member-name">Gabi</span>
+
+			<div class="social-icons mt-2">
+				<i class="bi bi-linkedin"></i>
+				<i class="bi bi-instagram"></i>
+				<i class="bi bi-github"></i>
+				<i class="bi bi-envelope"></i>
+			</div>
+		</div>
+
+		<p class="text-muted fs-5">
+Meu nome é Gabi, tenho 16 anos, estudo no SESI 026 e faço Desenvolvimento de Sistemas no SENAI Jaú. Sou bem comunicativa, organizada e gosto de ajudar para que o ambiente de trabalho/estudo seja mais leve e colaborativo.
+		</p>
+	</div>
+
+	<!-- ERICK -->
+	<div class="team-card reverse">
+		<div>
+			<img src="~/img/pablo.jpg" class="team-photo" />
+			<span class="member-name">Erick</span>
+
+			<div class="social-icons mt-2">
+				<i class="bi bi-linkedin"></i>
+				<i class="bi bi-instagram"></i>
+				<i class="bi bi-github"></i>
+				<i class="bi bi-envelope"></i>
+			</div>
+		</div>
+
+		<p class="text-muted fs-5">
+Tenho 17 anos e sempre tive muito interesse por programação. Atualmente estou me dedicando ao desenvolvimento de sites, e mais pra frente pretendo aprender também sobre criação de jogos. Estudo no SENAI Jaú e busco melhorar cada vez mais nas áreas que gosto.
+		</p>
+	</div>
+
+	<!-- MAIKE -->
+	<div class="team-card">
+		<div>
+			<img src="~/img/jao.jpg" class="team-photo" />
+			<span class="member-name">Maik</span>
+
+			<div class="social-icons mt-2">
+				<i class="bi bi-linkedin"></i>
+				<i class="bi bi-instagram"></i>
+				<i class="bi bi-github"></i>
+				<i class="bi bi-envelope"></i>
+			</div>
+		</div>
+
+		<p class="text-muted fs-5">
+Meu nome é Maike, tenho 16 anos e estou cursando Desenvolvimento de Sistemas no SENAI. No momento, estou focado em aprender mais sobre a área para, no futuro, poder trabalhar profissionalmente com tecnologia.
+		</p>
+	</div>
+
 </div>
