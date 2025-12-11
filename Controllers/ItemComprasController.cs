@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using App_BodyCorp.Data;
+using App_BodyCorp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using App_BodyCorp.Data;
-using App_BodyCorp.Models;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace App_BodyCorp.Controllers
 {
@@ -46,31 +47,125 @@ namespace App_BodyCorp.Controllers
             return View(itemCompra);
         }
 
-        // GET: ItemCompras/Create
-        public async Task<IActionResult> Create(int? id)
+        // GET: ItemCompras/Create? compraId = 5
+        public async Task<IActionResult> Create(int id)
         {
-            var compra = await _context.Compras.Include(cl => cl.Cliente).FirstOrDefaultAsync(c => c.CompraId == id);
-            ViewData["CompraId"] = compra;
-            ViewData["ProdutoId"] = new SelectList(_context.Produtos, "ProdutoId", "Categoria");
-            return View();
+            var compra = await _context.Compras
+                .Include(c => c.Cliente)
+                .FirstOrDefaultAsync(c => c.CompraId == id);
+
+            if (compra == null)
+                return NotFound();
+
+            // Carrega os itens da compra diretamente do DbSet ItensCompra
+            var itens = await _context.ItensCompra
+                .Include(i => i.Produto)
+                .Where(i => i.CompraId == id)
+                .ToListAsync();
+
+            ViewData["Compra"] = compra;
+            ViewData["Itens"] = itens;
+            // Fornece lista completa de produtos (modelo simples com PrecoUnitario)
+            ViewBag.Produtos = await _context.Produtos.OrderBy(p => p.Categoria).ToListAsync();
+
+            var model = new ItemCompra { CompraId = id, Quantidade = 1 };
+            return View(model);
         }
 
-        // POST: ItemCompras/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemCompraId,CompraId,ProdutoId,Quantidade,PrecoUnitario,TotalItem")] ItemCompra itemCompra)
+        public async Task<IActionResult> Create(ItemCompra itemCompra)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(itemCompra);
+                itemCompra.TotalItem = itemCompra.PrecoUnitario * itemCompra.Quantidade;
+                _context.ItensCompra.Add(itemCompra);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                // Recalcula total da compra consultando diretamente ItensCompra
+                var totalDaCompra = await _context.ItensCompra
+                    .Where(i => i.CompraId == itemCompra.CompraId)
+                    .SumAsync(i => i.TotalItem);
+
+                var compra = await _context.Compras.FindAsync(itemCompra.CompraId);
+                if (compra != null)
+                {
+                    compra.ValorTotal = totalDaCompra;
+                    _context.Update(compra);
+                    await _context.SaveChangesAsync();
+                }
+
+                return RedirectToAction(nameof(Create), new { compraId = itemCompra.CompraId });
             }
-            ViewData["CompraId"] = new SelectList(_context.Compras, "CompraId", "CompraId", itemCompra.CompraId);
-            ViewData["ProdutoId"] = new SelectList(_context.Produtos, "ProdutoId", "Categoria", itemCompra.ProdutoId);
+
+            // repopula select se falhar
+            ViewBag.Produtos = await _context.Produtos.OrderBy(p => p.Categoria).ToListAsync();
+            ViewData["Compra"] = await _context.Compras.Include(c => c.Cliente).FirstOrDefaultAsync(c => c.CompraId == itemCompra.CompraId);
             return View(itemCompra);
+        }
+
+        // POST via AJAX: adiciona item e retorna JSON com o item e novo total da compra
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddItemAjax([FromBody] AddItemDto dto)
+        {
+            if (dto == null || dto.Quantidade <= 0)
+                return Json(new { success = false, error = "Dados inválidos." });
+
+            var produto = await _context.Produtos.FindAsync(dto.ProdutoId);
+            if (produto == null)
+                return Json(new { success = false, error = "Produto não encontrado." });
+
+            var item = new ItemCompra
+            {
+                CompraId = dto.CompraId,
+                ProdutoId = dto.ProdutoId,
+                Quantidade = dto.Quantidade,
+                PrecoUnitario = dto.PrecoUnitario,
+            };
+            item.TotalItem = item.Quantidade * item.PrecoUnitario;
+
+            _context.ItensCompra.Add(item);
+            await _context.SaveChangesAsync();
+
+            // Novo: calcula o total da compra consultando diretamente ItensCompra
+            var totalDaCompra = await _context.ItensCompra
+                .Where(i => i.CompraId == dto.CompraId)
+                .SumAsync(i => i.TotalItem);
+
+            var compra = await _context.Compras.FindAsync(dto.CompraId);
+            if (compra != null)
+            {
+                compra.ValorTotal = totalDaCompra;
+                _context.Update(compra);
+                await _context.SaveChangesAsync();
+            }
+
+            // retorno simplificado para o cliente montar a linha
+            var retorno = new
+            {
+                success = true,
+                item = new
+                {
+                    itemCompraId = item.ItemCompraId,
+                    produtoCategoria = produto.Categoria,
+                    quantidade = item.Quantidade,
+                    precoUnitario = item.PrecoUnitario,
+                    totalItem = item.TotalItem
+                },
+                compraValorTotal = totalDaCompra
+            };
+
+            return Json(retorno);
+        }
+
+        // DTO simples para AJAX
+        public class AddItemDto
+        {
+            public int CompraId { get; set; }
+            public int ProdutoId { get; set; }
+            public int Quantidade { get; set; }
+            public decimal PrecoUnitario { get; set; }
         }
 
         // GET: ItemCompras/Edit/5

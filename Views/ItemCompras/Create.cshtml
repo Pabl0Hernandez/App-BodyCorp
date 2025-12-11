@@ -1,57 +1,207 @@
 ﻿@model App_BodyCorp.Models.ItemCompra
 
 @{
-	ViewData["Title"] = "Create";
-	var compras = ViewData["CompraId"] as Compra;
+    ViewData["Title"] = "Incluir Produtos na Compra";
+    var compra = ViewData["Compra"] as App_BodyCorp.Models.Compra;
+    var itens = ViewData["Itens"] as IEnumerable<App_BodyCorp.Models.ItemCompra>;
 }
 
-<h1>Create</h1>
+<h1>Incluir Produtos - PDV</h1>
 
-<h4>ItemCompra</h4>
-<hr />
 <div class="row">
-	<div class="col-md-4">
-		<form asp-action="Create">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group ">
-				<label asp-for="CompraId" class="control-label">Compra</label>
-				<input type="text" readonly asp-for="CompraId" class="form-control" value=@compras.CompraId>
+    <div class="col-md-8">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>Compra: <strong>@compra?.CompraId</strong></h5>
+                <p>Data: <strong>@(compra?.DataCompra.ToString())</strong></p>
+                <p>Cliente: <strong>@compra?.Cliente?.ClienteNome</strong></p>
+                <p>Valor Total: R$ <span id="valorTotal">@((compra?.ValorTotal ?? 0).ToString("F2"))</span></p>
+            </div>
+        </div>
 
-				<input type="text" readonly class="form-control" value=@compras.DataCompra>
-				<input type="text" readonly class="form-control" value="@compras.Cliente.ClienteNome">
-			</div>
-			<div class="form-group">
-				<label asp-for="ProdutoId" class="control-label"></label>
-				<select asp-for="ProdutoId" class="form-control" asp-items="ViewBag.ProdutoId"></select>
-			</div>
-			<div class="form-group">
-				<label asp-for="Quantidade" class="control-label"></label>
-				<input asp-for="Quantidade" class="form-control" />
-				<span asp-validation-for="Quantidade" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="PrecoUnitario" class="control-label"></label>
-				<input asp-for="PrecoUnitario" class="form-control" />
-				<span asp-validation-for="PrecoUnitario" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="TotalItem" class="control-label"></label>
-				<input asp-for="TotalItem" class="form-control" />
-				<span asp-validation-for="TotalItem" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<input type="submit" value="Create" class="btn btn-primary" />
-			</div>
-		</form>
-	</div>
-</div>
+        <div class="card">
+            <div class="card-header">Itens da Compra</div>
+            <div class="card-body p-0">
+                <table class="table table-striped mb-0" id="itemsTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Produto</th>
+                            <th class="text-center">Quantidade</th>
+                            <th class="text-end">Preço Unit.</th>
+                            <th class="text-end">Total Item</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (itens != null && itens.Any())
+                        {
+                            foreach (var it in itens)
+                            {
+                                <tr data-id="@it.ItemCompraId">
+                                    <td>@it.Produto?.Categoria</td>
+                                    <td class="text-center">@it.Quantidade</td>
+                                    <td class="text-end">R$ @it.PrecoUnitario.ToString("F2")</td>
+                                    <td class="text-end">R$ @it.TotalItem.ToString("F2")</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr id="emptyRow">
+                                <td colspan="4" class="text-center text-muted">Nenhum item ainda.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-<div>
-	<a asp-action="Index">Back to List</a>
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-header">Adicionar Item (PDV)</div>
+            <div class="card-body">
+                @* Anti-forgery token para AJAX *@
+                @Html.AntiForgeryToken()
+
+                <div class="form-group mb-2">
+                    <label>Produto</label>
+                    <select id="produtoId" class="form-control">
+                        <option value="">-- selecione --</option>
+                        @foreach (var p in ViewBag.Produtos as IEnumerable<App_BodyCorp.Models.Produto>)
+                        {
+                            <option value="@p.ProdutoId" data-preco="@((p.Preco))">@p.Categoria</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Quantidade</label>
+                    <input id="quantidade" type="number" min="1" class="form-control" value="1" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Preço Unitário</label>
+                    <input id="precoUnitario" type="number" step="0.01" min="0" class="form-control" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Total do Item</label>
+                    <input id="totalItem" type="text" class="form-control" readonly value="0.00" />
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button id="btnAddItem" class="btn btn-success">Adicionar</button>
+                    <a asp-action="Index" class="btn btn-secondary">Finalizar / Voltar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-muted small">
+            Dica: ao selecionar um produto, o preço unitário é preenchido automaticamente (se cadastrado). O total do item é calculado client-side antes do envio.
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
+    <script>
+        (function () {
+            // pega token antiforgery
+            const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+            const token = tokenInput ? tokenInput.value : '';
+
+            const produtoSelect = document.getElementById('produtoId');
+            const quantidadeInput = document.getElementById('quantidade');
+            const precoInput = document.getElementById('precoUnitario');
+            const totalInput = document.getElementById('totalItem');
+            const btnAdd = document.getElementById('btnAddItem');
+            const itemsTableBody = document.querySelector('#itemsTable tbody');
+            const valorTotalSpan = document.getElementById('valorTotal');
+            const compraId = @((compra?.CompraId) ?? 0);
+
+            function calcTotal() {
+                const q = parseFloat(quantidadeInput.value) || 0;
+                const p = parseFloat(precoInput.value) || 0;
+                totalInput.value = (q * p).toFixed(2);
+            }
+
+            produtoSelect?.addEventListener('change', function () {
+                const selected = produtoSelect.options[produtoSelect.selectedIndex];
+                const preco = selected?.dataset?.preco;
+                if (preco !== undefined) {
+                    precoInput.value = parseFloat(preco || 0).toFixed(2);
+                } else {
+                    precoInput.value = '';
+                }
+                calcTotal();
+            });
+
+            quantidadeInput?.addEventListener('input', calcTotal);
+            precoInput?.addEventListener('input', calcTotal);
+
+            btnAdd?.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const produtoId = produtoSelect.value;
+                const quantidade = parseFloat(quantidadeInput.value) || 0;
+                const precoUnitario = parseFloat(precoInput.value) || 0;
+
+                if (!produtoId || quantidade <= 0 || precoUnitario < 0) {
+                    alert('Preencha produto, quantidade e preço válidos.');
+                    return;
+                }
+
+                const payload = {
+                    CompraId: compraId,
+                    ProdutoId: parseInt(produtoId, 10),
+                    Quantidade: quantidade,
+                    PrecoUnitario: precoUnitario
+                };
+
+                btnAdd.disabled = true;
+
+                fetch('@Url.Action("AddItemAjax", "ItemCompras")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(r => r.json())
+                .then(data => {
+                    btnAdd.disabled = false;
+                    if (data.success) {
+                        // remove linha "nenhum item" se existir
+                        const emptyRow = document.getElementById('emptyRow');
+                        if (emptyRow) emptyRow.remove();
+
+                        // adiciona linha na tabela
+                        const tr = document.createElement('tr');
+                        tr.setAttribute('data-id', data.item.itemCompraId);
+                        tr.innerHTML = `<td>${data.item.produtoCategoria}</td>
+                                        <td class="text-center">${data.item.quantidade}</td>
+                                        <td class="text-end">R$ ${parseFloat(data.item.precoUnitario).toFixed(2)}</td>
+                                        <td class="text-end">R$ ${parseFloat(data.item.totalItem).toFixed(2)}</td>`;
+                        itemsTableBody.appendChild(tr);
+
+                        // atualiza total
+                        valorTotalSpan.textContent = parseFloat(data.compraValorTotal).toFixed(2);
+
+                        // reset formulário leve
+                        produtoSelect.selectedIndex = 0;
+                        quantidadeInput.value = 1;
+                        precoInput.value = '';
+                        totalInput.value = '0.00';
+                    } else {
+                        alert(data.error || 'Erro ao adicionar item.');
+                    }
+                })
+                .catch(err => {
+                    btnAdd.disabled = false;
+                    console.error(err);
+                    alert('Erro de comunicação com o servidor.');
+                });
+            });
+        })();
+    </script>
 }
