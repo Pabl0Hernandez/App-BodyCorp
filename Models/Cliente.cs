@@ -16,13 +16,9 @@ namespace App_BodyCorp.Models
         public string? Email { get; set; }
 
         [Required]
-        public string? Endereço { get; set; }
+        public string? Endereco { get; set; }
 
         public DateTime DataCadastro { get; set; } = DateTime.Now; //quando cadastrou a empresa
-       
-        
-        //quando tiver o relacionamento das compras
-        public ICollection<Compra>? Compras { get; set; }
 
     }
 }

@@ -1,8 +1,61 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+
+<!--BANNER-->
+<div class="banner">
+	<div class="banner-content">
+	</div>
 </div>
+
+
+
+<section class="hero-section" id="home">
+	<div class="hero-content">
+		<h1 class="hero-title">BodyCorp</h1>
+		<p class="hero-text">
+			Criando soluções inteligentes com IA para proteger quem move o mundo com as próprias mãos.
+			Tecnologias de prevenção, sensores e equipamentos que cuidam da sua segurança.
+		</p>
+		<a href="#sobre" class="hero-btn">Conheça Nossa Tecnologia</a>
+	</div>
+</section>
+
+
+
+<!-- SOBRE A BODYCORP -->
+<section class="info-section" id="sobre">
+	<h2 class="info-title">Tecnologia a serviço da segurança</h2>
+	<p class="info-text">
+		Desenvolvemos ferramentas inteligentes que monitoram movimentos e reduzem riscos,
+		prevenindo lesões no ambiente de trabalho. Segurança e conforto com o melhor da inovação.
+	</p>
+</section>
+<section>
+	<div class="row g-4">
+		<!-- ombreira -->
+		<div class="col-md-4">
+			<div class="card h-100 shadow-sm border-0 text-center p-3 produto-card">
+				<img src="img/Colete inteligente.jpeg" class="card-img-top mx-auto" style="width:150px;" alt="Ombreira">
+				<div class="card-body">
+					<h5 class="card-title fw-bold">Ombreira Inteligente</h5>
+					<p class="card-text">Previne dores e melhora a postura nos movimentos repetitivos.</p>
+					<button class="btn btn-outline-dark mt-2 " data-bs-toggle="modal" data-bs-target="#modalOmbreira">Saiba Mais</button>
+				</div>
+			</div>
+		</div>
+
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="py-5">
+	<div class="container">
+		<h2 class="mb-4">Precisa de Ajuda?Nós Contate!</h2>
+		<p>Email: suporte@bodycorp.com</p>
+		<p>Telefone: (11) 99999-9999</p>
+	</div>
+</section>
+

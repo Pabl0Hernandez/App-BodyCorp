@@ -1,31 +1,121 @@
-html {
-  font-size: 14px;
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Franklin Gothic'
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Degradê fixo pro sistema */
 body {
-  margin-bottom: 60px;
+    background: linear-gradient(135deg, #e8fff2, #8be0b8);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.navbar-custom {
+    padding: 8px;
+    background-color: #00cc00
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+
+
+
+
+.banner {
+    height: 450px;
+    width: 100%;
+    background-image: url('../images/freepik-projeto-sem-titulo-20251205193212sxXh.png'); /* use o nome da sua img */
+    background-size: cover; /* mantém proporção e cobre tudo */
+    background-position: center; /* centraliza */
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+.hero-section {
+    height: 95vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 3.4rem;
+    font-weight: 800;
+    color: #000;
+    text-shadow: 0 0 15px #0aff0a;
+    margin-bottom: 15px;
+}
+
+.hero-text {
+    max-width: 900px;
+    font-size: 1.35rem;
+    color: #0f3d29;
+    margin-bottom: 25px;
+}
+
+.hero-btn {
+    background: #0aff0a;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 32px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 15px #0aff0a;
+    transition: .3s;
+    text-decoration: none;
+}
+
+    .hero-btn:hover {
+        background: #00cc00;
+        box-shadow: 0 0 25px #0aff0a;
+        transform: translateY(-3px);
+    }
+
+/* SEÇÃO DESTAQUE */
+.info-section {
+    padding: 80px 20px;
+    text-align: center;
+    border-top: 2px solid #0aff0a20;
+    border-bottom: 2px solid #0aff0a20;
+}
+
+.info-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #000;
+    text-shadow: 0 0 15px #0aff0a;
+}
+
+.info-text {
+    max-width: 900px;
+    margin: 20px auto;
+    color: #0f3d29;
+    font-size: 1.45rem;
+}
+
+.container {
+    text-align: center;
+    color: #0f3d29;
 }
