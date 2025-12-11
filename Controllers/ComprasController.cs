@@ -48,7 +48,7 @@ namespace App_BodyCorp.Controllers
         // GET: Compras/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteNome");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace App_BodyCorp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", compra.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteNome", compra.ClienteId);
             return View(compra);
         }
 
@@ -82,7 +82,7 @@ namespace App_BodyCorp.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", compra.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteNome", compra.ClienteId);
             return View(compra);
         }
 
@@ -118,7 +118,7 @@ namespace App_BodyCorp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", compra.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteNome", compra.ClienteId);
             return View(compra);
         }
 
