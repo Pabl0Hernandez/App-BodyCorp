@@ -61,9 +61,11 @@ namespace App_BodyCorp.Controllers
         {
             if (ModelState.IsValid)
             {
+                compra.DataCompra = DateTime.Now;
+                compra.ValorTotal = 0;
                 _context.Add(compra);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "ItemCompras", new { id = compra.CompraId });
             }
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteNome", compra.ClienteId);
             return View(compra);

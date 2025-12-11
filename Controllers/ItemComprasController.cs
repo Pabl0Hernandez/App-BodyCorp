@@ -47,9 +47,10 @@ namespace App_BodyCorp.Controllers
         }
 
         // GET: ItemCompras/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int? id)
         {
-            ViewData["CompraId"] = new SelectList(_context.Compras, "CompraId", "CompraId");
+            var compra = await _context.Compras.Include(cl => cl.Cliente).FirstOrDefaultAsync(c => c.CompraId == id);
+            ViewData["CompraId"] = compra;
             ViewData["ProdutoId"] = new SelectList(_context.Produtos, "ProdutoId", "Categoria");
             return View();
         }
